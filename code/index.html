@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explora los mejores destinos turísticos con nuestra plataforma interactiva">
+    <meta name="keywords" content="viajes, turismo, destinos, ofertas, reservas">
+    <meta name="author" content="Juan">
+    <title>TourMaster - Tu Guía de Viajes Perfecta</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/nav-feedback.css">
+    <link rel="stylesheet" href="styles/favoritos.css">
+    <link rel="stylesheet" href="styles/notificaciones.css">
+    <link rel="stylesheet" href="styles/formularios.css">
+    <link rel="stylesheet" href="styles/chatbot.css">
+    <link rel="stylesheet" href="styles/carrucel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="main-nav" aria-label="Menú principal">
+        <ul>
+            <li class="active-nav" data-section="home"><a href="#home"><i class="fas fa-home"></i> Inicio</a></li>
+            <li data-section="destinos"><a href="#destinos"><i class="fas fa-map-marked-alt"></i> Destinos</a></li>
+            <li data-section="favoritos"><a href="#favoritos"><i class="fas fa-heart"></i> Favoritos <span class="fav-counter">0</span></a></li>
+            <li data-section="contact"><a href="#contact"><i class="fas fa-envelope"></i> Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sección Home -->
+    <section id="home" class="section active">
+        <div class="hero-banner">
+            <h1>Descubre el Mundo con TourMaster</h1>
+            <p>Encuentra tu próximo destino soñado</p>
+        </div>
+    </section>
+
+    <!-- Sección Destinos -->
+    <section id="destinos" class="section hidden">
+        <h2 class="section-title">Destinos Populares</h2>
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <!-- Tarjeta 1 -->
+                <article class="destino-card" data-destino="paris">
+                    <div class="card-header">
+                        <span class="badge popular">Más Popular</span>
+                        <button class="favorite-btn" aria-label="Añadir a favoritos">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <img src="img/francia.jpg" alt="París, Francia" loading="lazy">
+                    <div class="card-content">
+                        <h3>París, Francia</h3>
+                        <p class="destino-desc">La ciudad del amor</p>
+                        <div class="destino-meta">
+                            <span><i class="fas fa-euro-sign"></i> Desde 1,200</span>
+                            <span><i class="fas fa-clock"></i> 7 días</span>
+                        </div>
+                        <button class="explore-btn" data-modal="paris">Explorar</button>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 2 -->
+                <article class="destino-card" data-destino="tokio">
+                    <div class="card-header">
+                        <span class="badge oferta">30% OFF</span>
+                        <button class="favorite-btn" aria-label="Añadir a favoritos">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <img src="img/tokio.jpg" alt="Tokio, Japón" loading="lazy">
+                    <div class="card-content">
+                        <h3>Tokio, Japón</h3>
+                        <p class="destino-desc">Fusión de tradición y modernidad</p>
+                        <div class="destino-meta">
+                            <span><i class="fas fa-yen-sign"></i> Desde 250,000</span>
+                            <span><i class="fas fa-clock"></i> 10 días</span>
+                        </div>
+                        <button class="explore-btn" data-modal="tokio">Explorar</button>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 3 -->
+                <article class="destino-card" data-destino="ny">
+                    <div class="card-header">
+                        <span class="badge nuevo">Nuevo</span>
+                        <button class="favorite-btn" aria-label="Añadir a favoritos">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <img src="img/new.jpg" alt="Nueva York, EE.UU." loading="lazy">
+                    <div class="card-content">
+                        <h3>Nueva York, EE.UU.</h3>
+                        <p class="destino-desc">La ciudad que nunca duerme</p>
+                        <div class="destino-meta">
+                            <span><i class="fas fa-dollar-sign"></i> Desde 900</span>
+                            <span><i class="fas fa-clock"></i> 5 días</span>
+                        </div>
+                        <button class="explore-btn" data-modal="ny">Explorar</button>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 4 -->
+                <article class="destino-card" data-destino="roma">
+                    <div class="card-header">
+                        <span class="badge cultural">Cultural</span>
+                        <button class="favorite-btn" aria-label="Añadir a favoritos">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <img src="img/roma.jpg" alt="Roma, Italia" loading="lazy">
+                    <div class="card-content">
+                        <h3>Roma, Italia</h3>
+                        <p class="destino-desc">Cuna de la civilización</p>
+                        <div class="destino-meta">
+                            <span><i class="fas fa-euro-sign"></i> Desde 1,100</span>
+                            <span><i class="fas fa-clock"></i> 6 días</span>
+                        </div>
+                        <button class="explore-btn" data-modal="roma">Explorar</button>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 5 -->
+                <article class="destino-card" data-destino="bali">
+                    <div class="card-header">
+                        <span class="badge exotico">Exótico</span>
+                        <button class="favorite-btn" aria-label="Añadir a favoritos">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <img src="img/indonesia.jpg" alt="Bali, Indonesia" loading="lazy">
+                    <div class="card-content">
+                        <h3>Bali, Indonesia</h3>
+                        <p class="destino-desc">Paraíso tropical</p>
+                        <div class="destino-meta">
+                            <span><i class="fas fa-dollar-sign"></i> Desde 1,800</span>
+                            <span><i class="fas fa-clock"></i> 12 días</span>
+                        </div>
+                        <button class="explore-btn" data-modal="bali">Explorar</button>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 6 -->
+                <article class="destino-card" data-destino="machupicchu">
+                    <div class="card-header">
+                        <span class="badge aventura">Aventura</span>
+                        <button class="favorite-btn" aria-label="Añadir a favoritos">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <img src="img/peru.jpg" alt="Machu Picchu, Perú" loading="lazy">
+                    <div class="card-content">
+                        <h3>Machu Picchu, Perú</h3>
+                        <p class="destino-desc">Maravilla del mundo</p>
+                        <div class="destino-meta">
+                            <span><i class="fas fa-dollar-sign"></i> Desde 800</span>
+                            <span><i class="fas fa-clock"></i> 4 días</span>
+                        </div>
+                        <button class="explore-btn" data-modal="machupicchu">Explorar</button>
+                    </div>
+                </article>
+                <article class="destino-card" data-destino="patagonia">
+                    <div class="card-header">
+                        <span class="badge aventura">Aventura</span>
+                        <button class="favorite-btn" aria-label="Añadir a favoritos">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <img src="img/patagonia.jpg" alt="Patagonia, Chile y Argentina" loading="lazy">
+                    <div class="card-content">
+                        <h3>Patagonia, Chile y Argentina</h3>
+                        <p class="destino-desc">Naturaleza extrema</p>
+                        <div class="destino-meta">
+                            <span><i class="fas fa-dollar-sign"></i> Desde 1200</span>
+                            <span><i class="fas fa-clock"></i> 7 días</span>
+                        </div>
+                        <button class="explore-btn" data-modal="patagonia">Explorar</button>
+                    </div>
+                </article>
+                
+                <article class="destino-card" data-destino="africa-safari">
+                    <div class="card-header">
+                        <span class="badge aventura">Aventura</span>
+                        <button class="favorite-btn" aria-label="Añadir a favoritos">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <img src="img/africa.jpg" alt="Safari en África" loading="lazy">
+                    <div class="card-content">
+                        <h3>Safari en África</h3>
+                        <p class="destino-desc">Vida salvaje en su máximo esplendor</p>
+                        <div class="destino-meta">
+                            <span><i class="fas fa-dollar-sign"></i> Desde 2000</span>
+                            <span><i class="fas fa-clock"></i> 6 días</span>
+                        </div>
+                        <button class="explore-btn" data-modal="africa-safari">Explorar</button>
+                    </div>
+                </article>
+                
+                <article class="destino-card" data-destino="galapagos">
+                    <div class="card-header">
+                        <span class="badge naturaleza">Naturaleza</span>
+                        <button class="favorite-btn" aria-label="Añadir a favoritos">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <img src="img/ecuador.jpg" alt="Islas Galápagos, Ecuador" loading="lazy">
+                    <div class="card-content">
+                        <h3>Islas Galápagos, Ecuador</h3>
+                        <p class="destino-desc">Un paraíso único</p>
+                        <div class="destino-meta">
+                            <span><i class="fas fa-dollar-sign"></i> Desde 1500</span>
+                            <span><i class="fas fa-clock"></i> 5 días</span>
+                        </div>
+                        <button class="explore-btn" data-modal="galapagos">Explorar</button>
+                    </div>
+                </article>
+                
+                <article class="destino-card" data-destino="reykjavik">
+                    <div class="card-header">
+                        <span class="badge aventura">Aventura</span>
+                        <button class="favorite-btn" aria-label="Añadir a favoritos">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <img src="img/islandia.jpg" alt="Reykjavík, Islandia" loading="lazy">
+                    <div class="card-content">
+                        <h3>Reykjavík, Islandia</h3>
+                        <p class="destino-desc">Auroras boreales</p>
+                        <div class="destino-meta">
+                            <span><i class="fas fa-dollar-sign"></i> Desde 1800</span>
+                            <span><i class="fas fa-clock"></i> 5 días</span>
+                        </div>
+                        <button class="explore-btn" data-modal="reykjavik">Explorar</button>
+                    </div>
+                </article>
+                
+                <article class="destino-card" data-destino="maldivas">
+                    <div class="card-header">
+                        <span class="badge relax">Relax</span>
+                        <button class="favorite-btn" aria-label="Añadir a favoritos">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <img src="img/maldivas.jpg" alt="Maldivas" loading="lazy">
+                    <div class="card-content">
+                        <h3>Maldivas</h3>
+                        <p class="destino-desc">Un paraíso en el océano Índico</p>
+                        <div class="destino-meta">
+                            <span><i class="fas fa-dollar-sign"></i> Desde 2500</span>
+                            <span><i class="fas fa-clock"></i> 7 días</span>
+                        </div>
+                        <button class="explore-btn" data-modal="maldivas">Explorar</button>
+                    </div>
+                </article>
+                
+                <article class="destino-card" data-destino="petra">
+                    <div class="card-header">
+                        <span class="badge historia">Historia</span>
+                        <button class="favorite-btn" aria-label="Añadir a favoritos">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <img src="img/petra.jpg" alt="Petra, Jordania" loading="lazy">
+                    <div class="card-content">
+                        <h3>Petra, Jordania</h3>
+                        <p class="destino-desc">Una ciudad de piedra y leyenda</p>
+                        <div class="destino-meta">
+                            <span><i class="fas fa-dollar-sign"></i> Desde 1000</span>
+                            <span><i class="fas fa-clock"></i> 5 días</span>
+                        </div>
+                        <button class="explore-btn" data-modal="petra">Explorar</button>
+                    </div>
+                </article>
+                
+            </div>
+            <button class="carousel-btn prev-btn" aria-label="Anterior">&#10094;</button>
+            <button class="carousel-btn next-btn" aria-label="Siguiente">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- Sección Favoritos -->
+    <section id="favoritos" class="section hidden">
+        <h2 class="section-title">Tus Favoritos</h2>
+        <div class="favoritos-grid"></div>
+        <div class="empty-state">
+            <i class="fas fa-heart-broken"></i>
+            <p>¡Añade destinos a tus favoritos!</p>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contact" class="section hidden">
+        <div class="form-container">
+            <h2 class="section-title">Contáctanos</h2>
+            <form id="contactForm" class="animated-form">
+                <div class="form-group">
+                    <input type="text" id="nombre" required>
+                    <label for="nombre">Nombre Completo</label>
+                    <span class="focus-line"></span>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" id="email" required>
+                    <label for="email">Correo Electrónico</label>
+                    <span class="focus-line"></span>
+                </div>
+
+                <div class="form-group">
+                    <select id="tipo-consulta" required>
+                        <option value=""></option>
+                        <option value="general">Consulta General</option>
+                        <option value="reservas">Reservas</option>
+                        <option value="grupos">Viajes en Grupo</option>
+                    </select>
+                    <label for="tipo-consulta">Tipo de Consulta</label>
+                    <span class="focus-line"></span>
+                </div>
+
+                <div class="form-group">
+                    <textarea id="mensaje" rows="5" required></textarea>
+                    <label for="mensaje">Tu Mensaje</label>
+                    <span class="focus-line"></span>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Enviar Mensaje <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Chatbot -->
+    <aside class="chatbot-container" role="complementary">
+        <div class="chatbot-header">
+            <h4>Asistente Virtual</h4>
+            <button class="close-chat" aria-label="Cerrar chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages">
+            <div class="chat-message bot-message">¡Hola! ¿En qué puedo ayudarte hoy?</div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="Escribe tu mensaje..." aria-label="Mensaje al chatbot">
+            <button class="send-btn" aria-label="Enviar">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Botón flotante del chatbot -->
+    <button class="chat-toggle" aria-label="Abrir chat">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+
+    <!-- Elementos de UI adicionales -->
+    <div id="toast-container" class="toast-container"></div>
+    
+    <div class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-modal"><i class="fas fa-times"></i></button>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/nav-feedback.js"></script>
+    <script src="js/favoritos.js"></script>
+    <script src="js/notificaciones.js"></script>
+    <script src="js/formularios.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/carrucel.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+/* Estilos generales */
+:root {
+    --primary: #2A5C82;
+    --secondary: #F39C12;
+    --success: #27ae60;
+    --danger: #e74c3c;
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --card-bg: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Navbar */
+.main-nav {
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem;
+}
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: space-around;
+}
+.main-nav li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+.main-nav li a:hover {
+    background-color: var(--secondary);
+    border-radius: 8px;
+}
+
+/* Sección Destinos */
+.destinos-carousel {
+    padding: 2rem;
+    background-color: var(--bg-color);
+}
+.section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--primary);
+}
+.carousel-container {
+    position: relative;
+}
+.carousel-slide {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+.destino-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    overflow: hidden;
+    min-width: 300px;
+    max-width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.destino-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--shadow-color);
+}
+.destino-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--secondary);
+}
+.card-content {
+    padding: 1rem;
+}
+.explore-btn {
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.explore-btn:hover {
+    background-color: var(--primary);
+}
+
+/* Formulario de contacto */
+.animated-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    transition: border-color 0.3s;
+}
+input:focus {
+    border-color: var(--secondary);
+}
+.btn-submit {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn-submit:hover {
+    background-color: var(--secondary);
+}
+
+/* Chatbot */
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    overflow: hidden;
+}
+.chatbot-header {
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+.chatbot-messages {
+    padding: 1rem;
+    overflow-y: auto;
+    max-height: 250px;
+}
+.chatbot-input {
+    display: flex;
+    border-top: 1px solid var(--shadow-color);
+}
+input[placeholder] {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+}
+.send-btn {
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+}
+
+/* Botón flotante de chat */
+.chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    cursor: pointer;
+}
+.chat-toggle:hover {
+    background-color: var(--primary);
+}
