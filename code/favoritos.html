@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tus Favoritos - TourMaster</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/favoritos-page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="main-nav" aria-label="Menú principal">
+        <ul>
+            <li><a href="index.html#home" class="nav-link"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="index.html#destinos" class="nav-link"><i class="fas fa-map-marked-alt"></i> Destinos</a></li>
+            <li>
+                <a href="favoritos.html" class="nav-link favoritos-nav active">
+                    <i class="fas fa-heart"></i>
+                    Favoritos <span class="fav-counter">0</span>
+                </a>
+            </li>
+            <li><a href="index.html#contact" class="nav-link"><i class="fas fa-envelope"></i> Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main class="favoritos-container">
+        <div class="favoritos-header">
+            <h1>Tus Destinos Favoritos <i class="fas fa-heart"></i></h1>
+            <div class="favoritos-controls">
+                <div class="controls-wrapper">
+                    <div class="search-box">
+                        <input type="text" placeholder="Buscar en favoritos..." id="searchFavoritos">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="filters-container">
+                        <div class="sort-filter">
+                            <select id="sortBy">
+                                <option value="recent">Recientes primero</option>
+                                <option value="price">Por precio</option>
+                                <option value="duration">Por duración</option>
+                            </select>
+                        </div>
+                        <div class="tag-filter"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="favoritos-grid"></div>
+
+        <div class="empty-state">
+            <div class="empty-content">
+                <i class="fas fa-heart-broken"></i>
+                <h2>¡Aún no tienes favoritos!</h2>
+                <p>Explora nuestros destinos y guarda tus favoritos aquí</p>
+                <a href="destinos.html" class="btn-explorar">Explorar Destinos</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/favoritos.js"></script>
+    <script src="js/favoritos-page.js"></script>
+    <script src="js/nav-feedback.js"></script>
+</body>
+</html>

@@ -1,13 +1,16 @@
 class Notificaciones {
-    static mostrar(mensaje, tipo = 'success') {
+    static mostrar(mensaje, duracion = 3000) {
         const notificacion = document.createElement('div');
-        notificacion.className = `notificacion ${tipo}`;
+        notificacion.className = 'notificacion';
         notificacion.innerHTML = `
-            <i class="icon fas fa-${tipo === 'success' ? 'check-circle' : 'exclamation-triangle'}"></i>
+            <i class="fas fa-info-circle"></i>
             <span>${mensaje}</span>
         `;
         
         document.body.appendChild(notificacion);
-        setTimeout(() => notificacion.remove(), 3000);
+        
+        setTimeout(() => {
+            notificacion.remove();
+        }, duracion);
     }
 }

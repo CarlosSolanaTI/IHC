@@ -1,58 +1,123 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const carouselContainer = document.querySelector('.carousel-container');
-    const carouselSlide = document.querySelector('.carousel-slide');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    
-    let currentIndex = 0; // Índice del destino visible
-    const totalDestinos = document.querySelectorAll('.destino-card').length;
-    const slideWidth = carouselContainer.offsetWidth;
+    let carouselContainer, carouselSlide, prevBtn, nextBtn, cards;
+    let cardWidth, currentPosition = 0, totalCards, cardsVisible;
+    let autoPlayInterval;
+    const autoPlayDelay = 5000; // 5 segundos
 
-    // Ajustar el ancho del contenedor del slide dinámicamente
-    function setSlideWidth() {
-        const totalWidth = totalDestinos * slideWidth;
-        carouselSlide.style.width = `${totalWidth}px`;
-    }
-    setSlideWidth();
+    const calculateDimensions = () => {
+        if (!carouselContainer) return;
+        
+        const containerWidth = carouselContainer.offsetWidth;
+        cardsVisible = Math.floor(containerWidth / 300);
+        cardWidth = (containerWidth / cardsVisible) - 30; // Considerar márgenes
+    };
 
-    // Mostrar el siguiente destino
-    function moveToNext() {
-        if (currentIndex < totalDestinos - 1) {
-            currentIndex++;
-            updateCarouselPosition();
+    const initCarousel = () => {
+        carouselContainer = document.querySelector('.carousel-container');
+        if (!carouselContainer || carouselContainer.offsetWidth === 0) return;
+        
+        carouselSlide = carouselContainer.querySelector('.carousel-slide');
+        prevBtn = carouselContainer.querySelector('.prev-btn');
+        nextBtn = carouselContainer.querySelector('.next-btn');
+        cards = carouselContainer.querySelectorAll('.destino-card');
+        
+        totalCards = cards.length;
+        calculateDimensions();
+        
+        // Aplicar estilos
+        cards.forEach(card => {
+            card.style.flex = `0 0 ${cardWidth}px`;
+            card.style.margin = '0 15px';
+        });
+        
+        carouselSlide.style.width = `${(cardWidth + 30) * totalCards}px`;
+        updateButtons();
+        
+        // Iniciar autoplay
+        startAutoPlay();
+    };
+
+    const moveCarousel = (direction) => {
+        clearInterval(autoPlayInterval);
+        calculateDimensions();
+        const maxPosition = (totalCards - cardsVisible) * (cardWidth + 30);
+        
+        if (direction === 'next') {
+            currentPosition = Math.min(currentPosition + ((cardWidth + 30) * cardsVisible), maxPosition);
         } else {
-            currentIndex = 0; // Volver al inicio
-            updateCarouselPosition();
+            currentPosition = Math.max(currentPosition - ((cardWidth + 30) * cardsVisible), 0);
         }
-    }
+        
+        carouselSlide.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        carouselSlide.style.transform = `translateX(-${currentPosition}px)`;
+        updateButtons();
+        startAutoPlay();
+    };
 
-    // Mostrar el destino anterior
-    function moveToPrev() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateCarouselPosition();
-        } else {
-            currentIndex = totalDestinos - 1; // Ir al último destino
-            updateCarouselPosition();
-        }
-    }
+    const updateButtons = () => {
+        const maxPosition = (totalCards - cardsVisible) * (cardWidth + 30);
+        prevBtn.style.display = currentPosition > 0 ? 'block' : 'none';
+        nextBtn.style.display = currentPosition < maxPosition ? 'block' : 'none';
+    };
 
-    // Actualizar la posición del carrusel
-    function updateCarouselPosition() {
-        const offset = -currentIndex * slideWidth;
-        carouselSlide.style.transform = `translateX(${offset}px)`;
-    }
+    const startAutoPlay = () => {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(() => {
+            if (currentPosition < (totalCards - cardsVisible) * (cardWidth + 30)) {
+                moveCarousel('next');
+            } else {
+                currentPosition = -((cardWidth + 30) * cardsVisible);
+                carouselSlide.style.transition = 'none';
+                carouselSlide.style.transform = `translateX(${currentPosition}px)`;
+                setTimeout(() => {
+                    carouselSlide.style.transition = 'transform 0.5s ease';
+                    moveCarousel('next');
+                }, 50);
+            }
+        }, autoPlayDelay);
+    };
 
-    // Manejar el redimensionamiento de la ventana
-    window.addEventListener('resize', () => {
-        const newSlideWidth = carouselContainer.offsetWidth;
-        if (newSlideWidth !== slideWidth) {
-            setSlideWidth();
-            updateCarouselPosition();
-        }
+    // Event Listeners
+    const addEventListeners = () => {
+        prevBtn.addEventListener('click', () => moveCarousel('prev'));
+        nextBtn.addEventListener('click', () => moveCarousel('next'));
+        
+        // Pausar autoplay al interactuar
+        carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        carouselContainer.addEventListener('mouseleave', startAutoPlay);
+    };
+
+    // Manejar redimensionamiento
+    const handleResize = () => {
+        calculateDimensions();
+        carouselSlide.style.transition = 'none';
+        carouselSlide.style.transform = `translateX(-${currentPosition}px)`;
+        setTimeout(() => carouselSlide.style.transition = '', 50);
+    };
+
+    // Inicialización completa
+    const init = () => {
+        initCarousel();
+        addEventListeners();
+        window.addEventListener('resize', handleResize);
+    };
+
+    // Observador para sección activa
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            if (mutation.attributeName === 'class') {
+                initCarousel();
+            }
+        });
     });
 
-    // Eventos de clic para los botones de navegación
-    nextBtn.addEventListener('click', moveToNext);
-    prevBtn.addEventListener('click', moveToPrev);
+    const destinosSection = document.getElementById('destinos');
+    if (destinosSection) {
+        observer.observe(destinosSection, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    }
+
+    init();
 });

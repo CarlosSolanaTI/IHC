@@ -20,18 +20,202 @@
     <!-- Navbar -->
     <nav class="main-nav" aria-label="Menú principal">
         <ul>
-            <li class="active-nav" data-section="home"><a href="#home"><i class="fas fa-home"></i> Inicio</a></li>
-            <li data-section="destinos"><a href="#destinos"><i class="fas fa-map-marked-alt"></i> Destinos</a></li>
-            <li data-section="favoritos"><a href="#favoritos"><i class="fas fa-heart"></i> Favoritos <span class="fav-counter">0</span></a></li>
-            <li data-section="contact"><a href="#contact"><i class="fas fa-envelope"></i> Contacto</a></li>
+            <li><a href="#home" class="nav-link"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="#destinos" class="nav-link"><i class="fas fa-map-marked-alt"></i> Destinos</a></li>
+            <li>
+                <a href="favoritos.html" class="nav-link favoritos-nav"> <!-- Cambiado a página separada -->
+                    <i class="fas fa-heart"></i>
+                    Favoritos <span class="fav-counter">0</span>
+                </a>
+            </li>
+            <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contacto</a></li>
         </ul>
     </nav>
-
     <!-- Sección Home -->
     <section id="home" class="section active">
+        <!-- Hero Section -->
         <div class="hero-banner">
-            <h1>Descubre el Mundo con TourMaster</h1>
-            <p>Encuentra tu próximo destino soñado</p>
+            <div class="hero-overlay">
+                <div class="hero-content">
+                    <h1 class="hero-title">Descubre el Mundo con TourMaster</h1>
+                    <p class="hero-subtitle">Donde cada viaje se convierte en una historia inolvidable</p>
+                    
+                    <div class="search-container">
+                        <form class="search-bar" onsubmit="handleHomeSearch(event)">
+                            <datalist id="destinosList">
+                                <option value="París">
+                                <option value="Tokio">
+                                <option value="Nueva York">
+                                <option value="Roma">
+                                <option value="Bali">
+                                <option value="Machu Picchu">
+                                <option value="Patagonia">
+                                <option value="Islas Galápagos">
+                            </datalist>
+                            <input 
+                                type="text" 
+                                id="homeSearch"
+                                list="destinosList"
+                                placeholder="¿A dónde quieres viajar hoy?" 
+                                aria-label="Buscar destinos"
+                                autocomplete="off"
+                            >
+                            <button 
+                                type="button" 
+                                class="cta-button"
+                                aria-label="Buscar destinos"
+                            >
+                                <span class="button-text">Explora Ahora</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </form>
+                        <div class="quick-searches">
+                            <span>Búsquedas rápidas:</span>
+                            <button class="tag" onclick="searchDestination('París')">París</button>
+                            <button class="tag" onclick="searchDestination('Tropical')">Playas</button>
+                            <button class="tag" onclick="searchDestination('Aventura')">Aventura</button>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-globe-americas"></i>
+                            <div>
+                                <h3>50+</h3>
+                                <p>Destinos únicos</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-smile-beam"></i>
+                            <div>
+                                <h3>98%</h3>
+                                <p>Clientes satisfechos</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-award"></i>
+                            <div>
+                                <h3>#1</h3>
+                                <p>En viajes personalizados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Destacados -->
+        <div class="featured-section">
+            <div class="section-header">
+                <h2>Destinos Soñados</h2>
+                <p>Descubre nuestros lugares más populares</p>
+            </div>
+            
+            <div class="destinations-grid">
+                <div class="destination-card">
+                    <img src="img/paisaje2.jpg" alt="París romántico" loading="lazy">
+                    <div class="card-overlay">
+                        <h3>Europa Clásica</h3>
+                        <p>Donde la historia cobra vida</p>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <img src="img/paisaje3.jpg" alt="Playas tropicales" loading="lazy">
+                    <div class="card-overlay">
+                        <h3>Paraísos Tropicales</h3>
+                        <p>Arena blanca y aguas cristalinas</p>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <img src="img/paisaje5.jpg" alt="Aventura extrema" loading="lazy">
+                    <div class="card-overlay">
+                        <h3>Aventuras Extremas</h3>
+                        <p>Para los que buscan adrenalina</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Frase Inspiradora -->
+        <div class="inspirational-section">
+            <div class="quote-overlay">
+                <blockquote>
+                    "Viajar es la única cosa que compras y te hace más rico"
+                    <footer>- Anónimo</footer>
+                </blockquote>
+            </div>
+        </div>
+    
+        <!-- Por qué elegirnos -->
+        <div class="why-section">
+            <h2>¿Por qué TourMaster?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Seguridad Garantizada</h3>
+                    <p>Protección en todos tus viajes</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-passport"></i>
+                    <h3>Experiencias Únicas</h3>
+                    <p>Acceso a eventos exclusivos</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Mejor Precio</h3>
+                    <p>Garantía de precio más bajo</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Soporte 24/7</h3>
+                    <p>Asistencia en todo momento</p>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Testimonios -->
+        <div class="testimonials-section">
+            <div class="section-header">
+                <h2>Historias de Viajeros</h2>
+                <p>Lo que dicen nuestros aventureros</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <img src="img/turista.jpg" alt="Cliente satisfecho" loading="lazy">
+                    <blockquote>
+                        "La mejor experiencia de viaje que he tenido. ¡Todo perfectamente organizado!"
+                        <footer>- María, España</footer>
+                    </blockquote>
+                </div>
+                
+                <div class="testimonial-card">
+                    <img src="img/turista2.jpg" alt="Cliente satisfecho" loading="lazy">
+                    <blockquote>
+                        "Increíble selección de destinos y atención personalizada"
+                        <footer>- Carlos, México</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Newsletter -->
+        <div class="newsletter-section">
+            <div class="newsletter-overlay">
+                <div class="newsletter-content">
+                    <h3>¡No te pierdas nuestras ofertas!</h3>
+                    <p>Suscríbete para recibir descuentos exclusivos</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Ingresa tu correo" required>
+                        <button type="submit">Suscribirse <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -44,9 +228,10 @@
                 <article class="destino-card" data-destino="paris">
                     <div class="card-header">
                         <span class="badge popular">Más Popular</span>
+                        <!-- Cambiar en todas las tarjetas -->
                         <button class="favorite-btn" aria-label="Añadir a favoritos">
                             <i class="far fa-heart"></i>
-                        </button>
+                       </button>
                     </div>
                     <img src="img/francia.jpg" alt="París, Francia" loading="lazy">
                     <div class="card-content">
@@ -64,9 +249,10 @@
                 <article class="destino-card" data-destino="tokio">
                     <div class="card-header">
                         <span class="badge oferta">30% OFF</span>
+                        <!-- Cambiar en todas las tarjetas -->
                         <button class="favorite-btn" aria-label="Añadir a favoritos">
                             <i class="far fa-heart"></i>
-                        </button>
+                       </button>
                     </div>
                     <img src="img/tokio.jpg" alt="Tokio, Japón" loading="lazy">
                     <div class="card-content">
@@ -84,9 +270,10 @@
                 <article class="destino-card" data-destino="ny">
                     <div class="card-header">
                         <span class="badge nuevo">Nuevo</span>
+                        <!-- Cambiar en todas las tarjetas -->
                         <button class="favorite-btn" aria-label="Añadir a favoritos">
                             <i class="far fa-heart"></i>
-                        </button>
+                       </button>
                     </div>
                     <img src="img/new.jpg" alt="Nueva York, EE.UU." loading="lazy">
                     <div class="card-content">
@@ -104,9 +291,10 @@
                 <article class="destino-card" data-destino="roma">
                     <div class="card-header">
                         <span class="badge cultural">Cultural</span>
+                        <!-- Cambiar en todas las tarjetas -->
                         <button class="favorite-btn" aria-label="Añadir a favoritos">
                             <i class="far fa-heart"></i>
-                        </button>
+                       </button>
                     </div>
                     <img src="img/roma.jpg" alt="Roma, Italia" loading="lazy">
                     <div class="card-content">
@@ -124,9 +312,10 @@
                 <article class="destino-card" data-destino="bali">
                     <div class="card-header">
                         <span class="badge exotico">Exótico</span>
+                        <!-- Cambiar en todas las tarjetas -->
                         <button class="favorite-btn" aria-label="Añadir a favoritos">
                             <i class="far fa-heart"></i>
-                        </button>
+                       </button>
                     </div>
                     <img src="img/indonesia.jpg" alt="Bali, Indonesia" loading="lazy">
                     <div class="card-content">
@@ -144,9 +333,10 @@
                 <article class="destino-card" data-destino="machupicchu">
                     <div class="card-header">
                         <span class="badge aventura">Aventura</span>
+                        <!-- Cambiar en todas las tarjetas -->
                         <button class="favorite-btn" aria-label="Añadir a favoritos">
                             <i class="far fa-heart"></i>
-                        </button>
+                       </button>
                     </div>
                     <img src="img/peru.jpg" alt="Machu Picchu, Perú" loading="lazy">
                     <div class="card-content">
@@ -254,40 +444,12 @@
                     </div>
                 </article>
                 
-                <article class="destino-card" data-destino="petra">
-                    <div class="card-header">
-                        <span class="badge historia">Historia</span>
-                        <button class="favorite-btn" aria-label="Añadir a favoritos">
-                            <i class="far fa-heart"></i>
-                        </button>
-                    </div>
-                    <img src="img/petra.jpg" alt="Petra, Jordania" loading="lazy">
-                    <div class="card-content">
-                        <h3>Petra, Jordania</h3>
-                        <p class="destino-desc">Una ciudad de piedra y leyenda</p>
-                        <div class="destino-meta">
-                            <span><i class="fas fa-dollar-sign"></i> Desde 1000</span>
-                            <span><i class="fas fa-clock"></i> 5 días</span>
-                        </div>
-                        <button class="explore-btn" data-modal="petra">Explorar</button>
-                    </div>
-                </article>
-                
             </div>
             <button class="carousel-btn prev-btn" aria-label="Anterior">&#10094;</button>
             <button class="carousel-btn next-btn" aria-label="Siguiente">&#10095;</button>
         </div>
     </section>
 
-    <!-- Sección Favoritos -->
-    <section id="favoritos" class="section hidden">
-        <h2 class="section-title">Tus Favoritos</h2>
-        <div class="favoritos-grid"></div>
-        <div class="empty-state">
-            <i class="fas fa-heart-broken"></i>
-            <p>¡Añade destinos a tus favoritos!</p>
-        </div>
-    </section>
 
     <!-- Sección Contacto -->
     <section id="contact" class="section hidden">
@@ -371,5 +533,12 @@
     <script src="js/formularios.js"></script>
     <script src="js/chatbot.js"></script>
     <script src="js/carrucel.js"></script>
+    <script src="js/nav-favoritos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new NavManagerFavoritos();
+            new FavoritosPage();
+        });
+    </script>
 </body>
 </html>

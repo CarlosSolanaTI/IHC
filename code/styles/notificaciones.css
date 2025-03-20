@@ -1,40 +1,35 @@
-/* Sistema de Notificaciones */
+/* notificaciones.css */
 .notificacion {
     position: fixed;
-    top: 20px;
+    top: 20px;  /* Cambiado de bottom a top */
     right: 20px;
-    background: white;
-    padding: 1rem 1.5rem;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 15px 25px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
-    gap: 1rem;
-    transform: translateX(150%);
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    z-index: 9999;
+    gap: 10px;
+    animation: slideDown 0.3s ease-out;  /* Animación modificada */
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.notificacion.show {
-    transform: translateX(0);
+/* Nueva animación que viene de arriba */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-.notificacion.success {
-    border-left: 4px solid var(--success);
-}
-
-.notificacion.error {
-    border-left: 4px solid var(--danger);
-}
-
-.notificacion .icon {
-    font-size: 1.4rem;
-}
-
-.notificacion.success .icon {
-    color: var(--success);
-}
-
-.notificacion.error .icon {
-    color: var(--danger);
+/* Opcional: Ajustar posición del chatbot */
+.chatbot-container {
+    bottom: 90px;  /* Asegurar espacio entre notificaciones y chatbot */
+    right: 20px;
+    z-index: 999;  /* Menor que las notificaciones */
 }
